@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (hamburger && navbar) {
         hamburger.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling to document
+            e.stopPropagation();
             this.classList.toggle('active');
             navbar.classList.toggle('active');
 
@@ -32,16 +32,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navbar.classList.contains('active')) {
                 const overlay = document.createElement('div');
                 overlay.classList.add('menu-overlay');
-                overlay.classList.add('active'); // Ensure overlay is active
+                overlay.classList.add('active');
                 body.appendChild(overlay);
                 body.style.overflow = 'hidden';
+                console.log('Menu opened');
             } else {
                 const overlay = document.querySelector('.menu-overlay');
                 if (overlay) {
                     overlay.classList.remove('active');
-                    setTimeout(() => overlay.remove(), 300); // Match CSS transition duration
+                    setTimeout(() => overlay.remove(), 300);
                 }
                 body.style.overflow = '';
+                console.log('Menu closed');
             }
         });
 
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => overlay.remove(), 300);
                 }
                 body.style.overflow = '';
+                console.log('Menu closed via link click');
             });
         });
 
@@ -73,6 +76,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => overlay.remove(), 300);
                 }
                 body.style.overflow = '';
+                console.log('Menu closed via outside click');
+            }
+        });
+
+        // Close mobile menu on resize if larger than mobile breakpoint
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navbar.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navbar.classList.remove('active');
+                const overlay = document.querySelector('.menu-overlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                    setTimeout(() => overlay.remove(), 300);
+                }
+                body.style.overflow = '';
+                console.log('Menu closed on resize');
             }
         });
     } else {
