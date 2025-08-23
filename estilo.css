@@ -32,7 +32,7 @@ body {
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
@@ -191,7 +191,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   padding: 20px 0;
   z-index: 1000;
   transition: var(--transition);
@@ -293,7 +293,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 998;
@@ -1110,19 +1110,29 @@ img {
 
 /* Responsive Adjustments for Hamburger Menu */
 @media (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+
+  .header .container {
+    padding: 0 15px;
+  }
+
   .navbar ul {
     position: fixed;
     top: 80px;
     left: -100%;
-    width: 100%;
+    width: 100vw;
     height: calc(100vh - 80px);
     background-color: var(--black);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: left 0.3s ease;
-    padding: 20px;
+    padding: 20px 0;
+    margin: 0;
     z-index: 999;
+    box-sizing: border-box;
   }
 
   .navbar ul.active {
@@ -1131,12 +1141,17 @@ img {
 
   .navbar ul li {
     margin: 15px 0;
+    width: 100%;
+    text-align: center;
   }
 
   .navbar ul li a {
     font-size: 16px;
     padding: 10px 15px;
     border-radius: 5px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .navbar ul li a:hover,
@@ -1153,6 +1168,7 @@ img {
     display: block;
     width: 30px;
     height: 20px;
+    margin-right: 15px;
   }
 
   .hamburger span {
