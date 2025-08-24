@@ -35,7 +35,7 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 20px;
 }
 
 section {
@@ -926,71 +926,86 @@ img {
   color: var(--gray-dark);
 }
 
-/* Footer */
+/* Footer - Mejoras implementadas */
 .footer {
-  background-color: var(--black-light);
-  color: var(--white);
+  background: linear-gradient(135deg, var(--black-light) 0%, #2d3748 100%);
   padding: 60px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
   margin-bottom: 50px;
 }
 
-.footer-col h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
+.footer-col {
   position: relative;
-  padding-bottom: 10px;
+  z-index: 2;
+}
+
+.footer-col h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
   color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.footer-col h3:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background-color: var(--primary);
+.footer-col h3 i {
+  margin-right: 10px;
+  font-size: 1.5rem;
 }
 
 .footer-col p {
-  color: var(--gray-dark);
-  margin-bottom: 15px;
-  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #cbd5e0;
 }
 
-.footer-col p i {
-  margin-right: 8px;
-  color: var(--primary);
+.newsletter {
+  margin-top: 1.5rem;
 }
 
 .newsletter-form {
   display: flex;
-  margin-top: 20px;
+  margin-top: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .newsletter-form input {
   flex: 1;
   padding: 12px 15px;
-  border: 1px solid var(--gray-dark);
-  border-radius: 5px 0 0 5px;
-  background-color: var(--white);
-  color: var(--black);
+  border: none;
+  background: transparent;
+  color: var(--white);
   font-size: 14px;
+}
+
+.newsletter-form input::placeholder {
+  color: #a0aec0;
 }
 
 .newsletter-form button {
   padding: 12px 20px;
   background-color: var(--primary);
   border: none;
-  border-radius: 0 5px 5px 0;
   color: var(--white);
   cursor: pointer;
   transition: var(--transition);
@@ -1005,18 +1020,34 @@ img {
 }
 
 .footer-col ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-col ul li:before {
+  content: "•";
+  color: var(--primary);
+  margin-right: 10px;
+  font-size: 1.2rem;
 }
 
 .footer-col ul li a {
-  color: var(--gray-dark);
-  font-size: 14px;
+  color: #cbd5e0;
   transition: var(--transition);
+  display: flex;
+  align-items: center;
 }
 
 .footer-col ul li a:hover {
   color: var(--primary);
   transform: translateX(5px);
+}
+
+.footer-col ul li a i {
+  margin-right: 8px;
+  width: 20px;
+  text-align: center;
 }
 
 .horario-list {
@@ -1069,6 +1100,9 @@ img {
   font-weight: 600;
   text-decoration: none;
   transition: var(--transition);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
 }
 
 .emergency-link i {
@@ -1079,28 +1113,34 @@ img {
 .emergency-link:hover {
   color: var(--primary-light);
   transform: translateX(3px);
+  background: rgba(139, 92, 246, 0.2);
 }
 
+
+/* Modificación del footer-bottom existente */
 .footer-bottom {
-  background-color: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px 0;
-  text-align: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .footer-bottom p {
-  color: var(--gray-dark);
+  color: #a0aec0;
   font-size: 14px;
   margin-bottom: 0;
 }
 
 .footer-links {
-  margin-top: 10px;
+  display: flex;
+  gap: 20px;
 }
 
 .footer-links a {
-  color: var(--gray-dark);
+  color: #a0aec0;
   font-size: 14px;
-  margin: 0 15px;
   transition: var(--transition);
 }
 
@@ -1111,11 +1151,52 @@ img {
 /* Responsive Adjustments for Hamburger Menu */
 @media (max-width: 768px) {
   .container {
-    padding: 0;
+    padding: 0 20px;
   }
-
+  
   .header .container {
-    padding: 0 15px;
+    padding: 0 20px;
+  }
+  
+  /* Ajustes para evitar contenido pegado a los bordes */
+  .hero-content, 
+  .servicios-grid, 
+  .clases-grid, 
+  .instructores-slider,
+  .planes-grid,
+  .testimonios-slider,
+  .contacto-grid,
+  .footer-grid {
+    padding: 0 5px;
+  }
+  
+  /* Mejora específica para cards en móvil */
+  .servicio-card,
+  .clase-card,
+  .instructor-card,
+  .plan-card,
+  .testimonio-card {
+    margin: 0 5px 25px;
+  }
+  
+  /* Ajuste de botones en móvil */
+  .hero-buttons .btn {
+    margin: 5px 0;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  /* Mejora para el mapa en móviles */
+  .mapa-container {
+    height: 350px;
+  }
+  
+  .mapa-overlay {
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    max-width: none;
+    text-align: center;
   }
 
   .navbar ul {
@@ -1215,6 +1296,42 @@ img {
   .section-title h2 {
     font-size: 28px;
   }
+  
+  /* Responsive para el footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .footer-col h3 {
+    justify-content: center;
+  }
+  
+  .day-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* Responsive para el footer bottom */
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 0;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-col ul li {
+    justify-content: center;
+  }
+  
+  .footer-col ul li a {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1273,6 +1390,34 @@ img {
   .hamburger span {
     height: 2.5px;
     margin: 4px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .footer {
+    padding: 40px 0 0;
+  }
+  
+  .footer-grid {
+    gap: 25px;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-form input {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .newsletter-form button {
+    width: 100%;
+    border-radius: 0 0 8px 8px;
   }
 }
 
