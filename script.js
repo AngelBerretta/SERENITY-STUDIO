@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="***REMOVED***"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '***REMOVED***') return;
+            if (targetId === '#') return;
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `***REMOVED***${current}`) {
+            if (link.getAttribute('href') === `#${current}`) {
                 link.classList.add('active');
             }
         });
